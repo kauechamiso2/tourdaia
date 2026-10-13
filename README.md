@@ -11,7 +11,6 @@ npm run build    # type-check + build de produção em dist/
 npm run preview  # serve o build
 npm run lint     # oxlint
 npm run dev:vivo # versão para aprovação da Vivo (vídeos com a marca + bloco roxo)
-npm run deploy:vivo # atualiza a branch vivo → Vercel publica a versão de aprovação
 npm run deploy   # publica no GitHub Pages: /tourdaia/ (pública) e /tourdaia/vivo/ (aprovação Vivo)
 ```
 
@@ -32,5 +31,9 @@ Imports absolutos via `@/` (ex: `import { cn } from '@/lib/cn'`).
 
 `VITE_VARIANT=vivo` troca o que está em `src/variants/vivo.ts` (vídeos do hero com
 lojas Vivo, foto do time com o letreiro Vivo e a seção de parceria). Sem a variável —
-caso da Vercel — o build sai com `src/variants/default.ts` e os assets da Vivo não
+caso do projeto `tourdaia` na Vercel — o build sai com `src/variants/default.ts` e os assets da Vivo não
 entram no pacote.
+
+Na Vercel, cada push na `main` publica os dois projetos:
+`tourdaia` → https://tourdaia.vercel.app (pública) e
+`tourdaia-vivo` (variável `VITE_VARIANT=vivo`) → https://tourdaia-vivo.vercel.app (aprovação).

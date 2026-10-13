@@ -9,7 +9,6 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "deploy:vivo": "git push --force origin $(git commit-tree HEAD^{tree} -p HEAD -m \"Versão Vivo (aprovação)\"):refs/heads/vivo",
     "deploy": "GITHUB_PAGES=true npm run build && GITHUB_PAGES=true VITE_VARIANT=vivo vite build --outDir dist/vivo --emptyOutDir && touch dist/.nojekyll && sh scripts/deploy-pages.sh"
   },
   "dependencies": {
