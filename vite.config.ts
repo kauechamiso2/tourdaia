@@ -7,8 +7,14 @@ import { defineConfig, type Plugin } from 'vite'
  * VITE_VARIANT=vivo gera a versão para aprovação da Vivo (vídeos com a marca
  * Vivo + bloco roxo). Sem a variável (Vercel / produção) sai a versão pública,
  * e os assets da Vivo nem entram no pacote.
+ * Na Vercel: branch `main` = versão pública; branch `vivo` = versão de aprovação.
  */
-const variant = process.env.VITE_VARIANT === 'vivo' ? 'vivo' : 'default'
+const variant =
+  process.env.VITE_VARIANT === 'vivo' ||
+  // na Vercel, a branch `vivo` publica a versão de aprovação num link próprio (produção segue na main)
+  process.env.VERCEL_GIT_COMMIT_REF === 'vivo'
+    ? 'vivo'
+    : 'default'
 
 // GitHub Pages serve em /tourdaia/ (e a versão vivo em /tourdaia/vivo/); local e Vercel na raiz
 const pagesBase = variant === 'vivo' ? '/tourdaia/vivo/' : '/tourdaia/'

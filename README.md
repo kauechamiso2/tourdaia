@@ -11,6 +11,7 @@ npm run build    # type-check + build de produção em dist/
 npm run preview  # serve o build
 npm run lint     # oxlint
 npm run dev:vivo # versão para aprovação da Vivo (vídeos com a marca + bloco roxo)
+npm run deploy:vivo # atualiza a branch vivo → Vercel publica a versão de aprovação
 npm run deploy   # publica no GitHub Pages: /tourdaia/ (pública) e /tourdaia/vivo/ (aprovação Vivo)
 ```
 
