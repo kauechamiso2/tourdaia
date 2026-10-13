@@ -100,9 +100,8 @@ export function Hero() {
               ))}
             </h1>
             <motion.p variants={paragraph} className="text-[15px] leading-[27px] text-muted">
-              Lorem ipsum dolor sit amet consectetur. Mi vel lorem metus lacus habitant et aliquet magna.
-              Facilisis pellentesque tortor blandit congue tortor sit. Mauris quis duis vitae dui fames
-              cursus risus. Laoreet aenean sed nunc eu urna sed magna leo.
+              Visite uma loja Vivo participante e conte com nossos especialistas para colocar a IA para
+              trabalhar no seu negócio, do atendimento às vendas.
             </motion.p>
           </div>
 

@@ -36,8 +36,8 @@ function Intro() {
             Seu time digital chegou na sua cidade
           </motion.h2>
           <motion.p variants={reveal(2)} className="max-w-[540px] text-[17px] leading-7 text-muted lg:text-[18px]">
-            Lorem ipsum dolor sit amet consectetur. Mi vel lorem metus lacus habitant et aliquet magna. Facilisis
-            pellentesque tortor blandit congue tortor sit.
+            Conheça os agentes de inteligência artificial que podem atender seus clientes, vender mais e automatizar
+            tarefas do seu negócio.
           </motion.p>
         </div>
         <VoteButton variants={reveal(3)} />
