@@ -2,13 +2,23 @@ import arrowRight from '@/assets/signup/arrow-right.svg'
 import { cn } from '@/lib/cn'
 import { EASE_OUT_EXPO } from '@/lib/motion'
 import { AnimatePresence, motion } from 'motion/react'
-import { useId, useState, type FormEvent } from 'react'
-import { CityField } from './CityField'
+import { useEffect, useId, useMemo, useState, type FormEvent } from 'react'
+import { Combobox } from './Combobox'
+import { STATES } from './data/states'
+
+type CitiesByUF = Record<string, string[]>
+
+/* 5.571 municípios (IBGE) — carregados só quando o formulário aparece */
+let citiesCache: Promise<CitiesByUF> | null = null
+const loadCities = () => (citiesCache ??= import('./data/municipios.json').then((m) => m.default as CitiesByUF))
+
+const STATE_OPTIONS = STATES.map((s) => ({ value: s.uf, label: s.name }))
 
 /*
  * Figma "Form / Inscrição" (Vazio · Preenchido · Enviado).
- * Cidade + WhatsApp obrigatórios; o botão habilita com os dois preenchidos e o
- * envio troca o formulário pelo cartão de sucesso.
+ * Estado → cidade (todos os municípios do IBGE) + WhatsApp, obrigatórios; o
+ * botão habilita com tudo preenchido e o envio troca o formulário pelo cartão
+ * de sucesso.
  * TODO: ligar o envio ao backend/CRM — hoje só registra localmente.
  */
 
@@ -29,11 +39,22 @@ const swap = {
 
 export function SignupForm() {
   const id = useId()
+  const [uf, setUf] = useState('')
   const [city, setCity] = useState('')
+  const [cities, setCities] = useState<CitiesByUF | null>(null)
+
+  useEffect(() => {
+    loadCities().then(setCities)
+  }, [])
+
+  const cityOptions = useMemo(
+    () => (uf && cities ? cities[uf].map((c) => ({ value: c, label: c })) : []),
+    [uf, cities],
+  )
   const [phone, setPhone] = useState('')
   const [sent, setSent] = useState(false)
 
-  const valid = city.trim().length > 0 && phone.replace(/\D/g, '').length === 11
+  const valid = Boolean(uf && city) && phone.replace(/\D/g, '').length === 11
 
   const submit = (e: FormEvent) => {
     e.preventDefault()
@@ -41,7 +62,6 @@ export function SignupForm() {
     setSent(true)
   }
 
-  const cityName = city.split(',')[0]
 
   return (
     <AnimatePresence mode="wait" initial={false}>
@@ -52,7 +72,7 @@ export function SignupForm() {
             VOTO REGISTRADO
           </p>
           <p className="text-[24px] leading-[30px] font-medium tracking-[-0.02em] text-ink">
-            Valeu! {cityName} tem mais um voto.
+            Valeu! {city} tem mais um voto.
           </p>
           <p className="text-[15px] leading-6 text-muted">
             A gente avisa no seu WhatsApp quando a sua cidade entrar na rota. Quanto mais gente votar, maior a chance.
@@ -60,7 +80,30 @@ export function SignupForm() {
         </motion.div>
       ) : (
         <motion.form key="form" {...swap} onSubmit={submit} noValidate className="flex flex-col gap-5">
-          <CityField value={city} onChange={setCity} />
+          <div className="grid gap-5 sm:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] sm:gap-3">
+            <Combobox
+              label="Seu estado"
+              placeholder="Estado"
+              searchPlaceholder="Buscar estado…"
+              options={STATE_OPTIONS}
+              value={uf}
+              onChange={(v) => {
+                if (v !== uf) setCity('')
+                setUf(v)
+              }}
+            />
+            <Combobox
+              label="Sua cidade"
+              placeholder={uf ? 'Selecione sua cidade' : 'Escolha o estado'}
+              searchPlaceholder="Buscar cidade…"
+              options={cityOptions}
+              value={city}
+              onChange={setCity}
+              disabled={!uf}
+              loading={Boolean(uf) && !cities}
+              withPin
+            />
+          </div>
 
           <div className="flex flex-col gap-2">
             <label htmlFor={`${id}-phone`} className="text-[13px] leading-[18px] font-medium tracking-[-0.01em] text-ink">

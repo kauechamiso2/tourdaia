@@ -18,12 +18,12 @@ const drawLine: Variants = {
 export function SiteHeader() {
   return (
     <header className="flex flex-col gap-[33px]">
-      <div className="flex h-[42px] items-center justify-between gap-6">
+      <div className="flex min-h-[42px] items-center justify-between gap-6">
         <motion.a
           variants={fadeDown(0)}
           href="#"
           aria-label="Tour da IA, por squad.com"
-          className="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:gap-4"
+          className="flex flex-col items-start gap-1"
         >
           <img
             src={logoTourDaIa}
@@ -32,8 +32,8 @@ export function SiteHeader() {
             height={24.43}
             className="h-auto w-[112px] sm:w-[143px]"
           />
-          {/* "por squad.com": texto Inter + wordmark, 60% de opacidade como no Figma */}
-          <span className="flex items-center gap-[6px] opacity-60 max-sm:origin-left max-sm:scale-[0.78]">
+          {/* "por squad.com" embaixo da logo: texto Inter + wordmark, 60% de opacidade */}
+          <span className="-mb-1 flex origin-top-left scale-[0.78] items-center gap-[6px] opacity-60">
             <span className="font-inter text-[17.642px] leading-[25.66px] tracking-[-0.02em] text-black">
               por
             </span>
