@@ -2,8 +2,8 @@ import arrowUpRight from '@/assets/signup/arrow-up-right.svg'
 import mapBa from '@/assets/signup/map-ba.svg'
 import pin from '@/assets/signup/pin.svg'
 import ribbon from '@/assets/signup/ribbon.webp'
-import photo from '@/assets/signup/team-photo@2x.webp'
 import { EASE_OUT_EXPO, enter } from '@/lib/motion'
+import { variant } from '@variant'
 import { motion, type Variants } from 'motion/react'
 import { SignupForm } from './SignupForm'
 
@@ -133,7 +133,7 @@ export function Signup() {
         >
           <motion.img
             variants={photoZoom}
-            src={photo}
+            src={variant.teamPhoto}
             alt="Os seis agentes do Squad juntos numa loja Vivo"
             width={560}
             height={600}

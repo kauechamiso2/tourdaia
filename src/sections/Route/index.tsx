@@ -2,6 +2,7 @@ import { VoteButton } from '@/components/VoteButton'
 import { cn } from '@/lib/cn'
 import { EASE_OUT_EXPO, enter } from '@/lib/motion'
 import { motion, type Variants } from 'motion/react'
+import { variant } from '@variant'
 import { RouteImage } from './RouteImage'
 
 /*
@@ -51,7 +52,7 @@ function Marker({ live, i }: { live: boolean; i: number }) {
 
 export function Route() {
   return (
-    <section id="rota" className="relative isolate overflow-hidden bg-canvas pt-12 pb-24 lg:pt-20 lg:pb-40">
+    <section id="rota" className={cn('relative isolate overflow-hidden bg-canvas pb-24 lg:pb-40', variant.Partner ? 'pt-24 lg:pt-40' : 'pt-12 lg:pt-20')}>
       <span aria-hidden className="pointer-events-none absolute inset-y-0 left-[calc(50%+659px)] hidden w-px bg-line min-[1400px]:block" />
 
       <div className="flex flex-col gap-14 lg:flex-row lg:items-center lg:gap-[120px]">

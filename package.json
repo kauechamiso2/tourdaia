@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "dev:vivo": "VITE_VARIANT=vivo vite",
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "deploy": "GITHUB_PAGES=true npm run build && touch dist/.nojekyll && sh scripts/deploy-pages.sh"
+    "deploy": "GITHUB_PAGES=true npm run build && GITHUB_PAGES=true VITE_VARIANT=vivo vite build --outDir dist/vivo --emptyOutDir && touch dist/.nojekyll && sh scripts/deploy-pages.sh"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",

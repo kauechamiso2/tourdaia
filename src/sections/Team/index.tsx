@@ -1,4 +1,6 @@
+import { cn } from '@/lib/cn'
 import { enter } from '@/lib/motion'
+import { variant } from '@variant'
 import { motion, type Variants } from 'motion/react'
 import { AgentCarousel } from './AgentCarousel'
 
@@ -11,7 +13,7 @@ const reveal = (i: number): Variants => ({
 
 export function Team() {
   return (
-    <section id="time-digital" className="relative isolate overflow-hidden bg-canvas pt-24 pb-12 lg:pt-40 lg:pb-20">
+    <section id="time-digital" className={cn('relative isolate overflow-hidden bg-canvas pt-24 lg:pt-40', variant.Partner ? 'pb-24 lg:pb-40' : 'pb-12 lg:pb-20')}>
       <div className="mx-auto flex w-full max-w-[calc(1200px+var(--gutter)*2)] flex-col gap-14 px-[var(--gutter)] lg:flex-row lg:items-center lg:gap-0">
         <motion.div
           initial="hidden"
