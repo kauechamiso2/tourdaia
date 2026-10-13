@@ -9,7 +9,7 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "deploy": "GITHUB_PAGES=true npm run build && GITHUB_PAGES=true VITE_VARIANT=vivo vite build --outDir dist/vivo --emptyOutDir && touch dist/.nojekyll && sh scripts/deploy-pages.sh"
+    "deploy": "GITHUB_PAGES=true npm run build && GITHUB_PAGES=true VITE_VARIANT=vivo vite build --outDir dist/vivo --emptyOutDir && touch dist/.nojekyll && cp vercel.json dist/ && sh scripts/deploy-pages.sh"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.3",
