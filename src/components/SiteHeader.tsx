@@ -1,5 +1,4 @@
 import arrowDown from '@/assets/hero/arrow-down.svg'
-import logoSquad from '@/assets/hero/logo-squad.svg'
 import logoTourDaIa from '@/assets/hero/logo-tour-da-ia.svg'
 import { enter, EASE_OUT_EXPO } from '@/lib/motion'
 import { motion, type Variants } from 'motion/react'
@@ -22,8 +21,8 @@ export function SiteHeader() {
         <motion.a
           variants={fadeDown(0)}
           href="#"
-          aria-label="Tour da IA, por squad.com"
-          className="flex flex-col items-start gap-1"
+          aria-label="Tour da IA"
+          className="flex items-center"
         >
           <img
             src={logoTourDaIa}
@@ -32,13 +31,6 @@ export function SiteHeader() {
             height={24.43}
             className="h-auto w-[112px] sm:w-[143px]"
           />
-          {/* "por squad.com" embaixo da logo: texto Inter + wordmark, 60% de opacidade */}
-          <span className="-mb-1 flex origin-top-left scale-[0.78] items-center gap-[6px] opacity-60">
-            <span className="font-inter text-[17.642px] leading-[25.66px] tracking-[-0.02em] text-black">
-              por
-            </span>
-            <img src={logoSquad} alt="" width={85} height={15.34} className="mt-[3px]" />
-          </span>
         </motion.a>
 
         <motion.a

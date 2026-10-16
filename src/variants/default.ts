@@ -22,4 +22,5 @@ export const variant: Variant = {
   },
   teamPhoto,
   Partner: null,
+  HeroLockup: null,
 }

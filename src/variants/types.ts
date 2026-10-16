@@ -14,4 +14,6 @@ export type Variant = {
   teamPhoto: string
   /* seção de parceria (bloco roxo); null = escondida */
   Partner: ComponentType | null
+  /* "squad.com + vivo" acima do título do hero; null = sem */
+  HeroLockup: ComponentType | null
 }

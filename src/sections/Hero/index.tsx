@@ -2,6 +2,7 @@ import ribbon from '@/assets/hero/ribbon@2x.webp'
 import { SiteHeader } from '@/components/SiteHeader'
 import { EASE_OUT_EXPO, enter } from '@/lib/motion'
 import { useFontsReady } from '@/lib/useFontsReady'
+import { variant } from '@variant'
 import { motion, type Variants } from 'motion/react'
 import { TourMap } from './TourMap'
 
@@ -88,6 +89,7 @@ export function Hero() {
 
         <div className="grid flex-1 pb-16 lg:grid-cols-[auto_minmax(0,1fr)] lg:gap-x-[clamp(48px,7vw,101px)]">
           <div className="flex w-[calc(var(--display)*6.163)] max-w-full flex-col gap-[30px] self-start pt-16 lg:pt-[120px]">
+            {variant.HeroLockup && <variant.HeroLockup />}
             <h1 className="text-[length:var(--display)] leading-[1.0362] font-medium tracking-[-0.067em] text-ink">
               <span className="sr-only">Vamos viajar pelo Brasil para levar IA até seu negócio</span>
               {LINES.map((content, i) => (

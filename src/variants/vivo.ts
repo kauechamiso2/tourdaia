@@ -9,6 +9,7 @@ import sudeste from '@/assets/vivo/stops/sudeste.mp4'
 import sulPoster from '@/assets/vivo/stops/sul-poster.jpg'
 import sul from '@/assets/vivo/stops/sul.mp4'
 import teamPhoto from '@/assets/vivo/team-photo@2x.webp'
+import { PartnerLockup } from '@/sections/Hero/PartnerLockup'
 import { Partner } from '@/sections/Partner'
 import type { Variant } from './types'
 
@@ -23,4 +24,5 @@ export const variant: Variant = {
   },
   teamPhoto,
   Partner,
+  HeroLockup: PartnerLockup,
 }
